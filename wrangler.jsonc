@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "webgal-library",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2025-09-23",
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "webgal-library",
+      // 先运行 `wrangler d1 create webgal-library`，再把这里替换成真实 ID。
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "SITE_NAME": "GALGAME LIBRARY",
+    "SITE_TAGLINE": "把喜欢的故事，收进自己的星图。"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

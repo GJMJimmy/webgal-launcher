@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.wrangler/
+.pnpm-store/
+package-lock.json
+.dev.vars
+.env
+*.local
+.DS_Store
+Thumbs.db
+vnite-ref.png
+screenshots/

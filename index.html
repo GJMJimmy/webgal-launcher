@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090a0f" />
+    <meta
+      name="description"
+      content="个人 Galgame 收藏馆。收录我制作的网页版视觉小说，点击卡片查看详情并开始游戏。"
+    />
+    <meta property="og:title" content="GALGAME LIBRARY" />
+    <meta
+      property="og:description"
+      content="把喜欢的故事，收进自己的星图。个人网页版 Galgame 收藏馆。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      (() => {
+        const key = "galgame-library-theme";
+        let mode = "system";
+        try {
+          const saved = localStorage.getItem(key);
+          if (saved === "light" || saved === "dark" || saved === "system") mode = saved;
+        } catch {
+          // Ignore storage restrictions and fall back to system preference.
+        }
+        const dark =
+          mode === "dark" ||
+          (mode === "system" &&
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+        document.documentElement.dataset.themeMode = mode;
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", dark ? "#090a0f" : "#f3f5f9");
+      })();
+    </script>
+    <title>GALGAME LIBRARY</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/client/main.tsx"></script>
+  </body>
+</html>

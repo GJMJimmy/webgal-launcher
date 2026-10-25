@@ -1,0 +1,41 @@
+{
+  "name": "webgal-library",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A personal galgame library for Cloudflare Workers",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "dev": "vite build && wrangler dev",
+    "dev:client": "vite",
+    "preview:local": "vite build && tsx scripts/preview-server.ts",
+    "cf:login": "node scripts/cf-login.mjs",
+    "cf:login:manual": "wrangler login --callback-host 127.0.0.1 --callback-port 8977 --browser=false",
+    "build": "vite build",
+    "check": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.worker.json --noEmit",
+    "cf:deploy": "vite build && wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply webgal-library --local",
+    "db:migrate:remote": "wrangler d1 migrations apply webgal-library --remote",
+    "db:seed:local": "wrangler d1 execute webgal-library --local --file=./seed/demo.sql",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "hono": "^4.9.10",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-router-dom": "7.9.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20250923.0",
+    "@types/node": "22.18.8",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@vitejs/plugin-react": "5.0.4",
+    "tsx": "^4.23.15",
+    "typescript": "5.9.3",
+    "vite": "7.2.2",
+    "wrangler": "4.40.0"
+  }
+}
